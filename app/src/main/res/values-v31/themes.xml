@@ -1,0 +1,11 @@
+<resources>
+
+    <!-- The Splash Screen Theme for Android 12 and NEWER -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="android:windowSplashScreenBackground">@color/splash_background_red</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/icon_splash_final</item>
+        <!-- This line now has a valid theme to point to -->
+        <item name="postSplashScreenTheme">@style/Theme.Priscilla</item>
+    </style>
+
+</resources>

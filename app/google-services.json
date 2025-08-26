@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "426556454782",
+    "project_id": "priscilla-ia",
+    "storage_bucket": "priscilla-ia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426556454782:android:b4a779f14cc0791302a52f",
+        "android_client_info": {
+          "package_name": "com.example.priscilla"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426556454782-3eepdu9ajqdvnp333ivi426o170g93l8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.priscilla",
+            "certificate_hash": "6f934a41a5493528530bb3cb9d1e50e0d6f5ef9b"
+          }
+        },
+        {
+          "client_id": "426556454782-bu5s1ptpn9o3b3mvd474f5gea9bga33s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABUq3wxkUTJ97rSmdyhLeBCTKbFlmjZIU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426556454782-bu5s1ptpn9o3b3mvd474f5gea9bga33s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

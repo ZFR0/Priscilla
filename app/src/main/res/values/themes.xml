@@ -1,0 +1,16 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Style 1: The Main Theme for your Application -->
+    <!-- This is the theme that MainActivity will use AFTER the splash screen. -->
+    <style name="Theme.Priscilla" parent="android:Theme.Material.Light.NoActionBar" />
+
+
+    <!-- Style 2: The Splash Screen Theme (for older devices) -->
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/splash_background_red</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/icon_splash_final</item>
+        <!-- This line now has a valid theme to point to -->
+        <item name="postSplashScreenTheme">@style/Theme.Priscilla</item>
+    </style>
+
+</resources>

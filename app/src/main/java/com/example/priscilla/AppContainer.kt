@@ -110,6 +110,7 @@ interface KnowledgeDataSource {
     suspend fun getContextString(prompt: String, image: Bitmap?, locationProvider: LocationProvider): String?
     suspend fun analyzeImage(image: Bitmap): List<String>
     suspend fun loadBitmapFromPath(path: String): Bitmap?
+    suspend fun saveBitmapToStorage(bitmap: Bitmap): String?
 }
 
 /**
@@ -205,7 +206,7 @@ class PriscillaApplication : Application() {
  */
 class DefaultAppContainer(private val context: Context) : AppContainer {
 
-    // --- Data Source Implementations ---
+    // Data Source Implementations
     private val llamaDataSource: LlamaDataSource by lazy {
         LlamaDataSourceImpl(context)
     }
@@ -256,7 +257,7 @@ class DefaultAppContainer(private val context: Context) : AppContainer {
         )
     }
 
-    // --- Repository Implementations ---
+    // Repository Implementations
 
     override val chatRepository: ChatRepository by lazy {
         ChatRepositoryImpl(

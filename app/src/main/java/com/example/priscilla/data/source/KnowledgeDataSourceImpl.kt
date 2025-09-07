@@ -62,6 +62,13 @@ class KnowledgeDataSourceImpl(
         }
     }
 
+    override suspend fun saveBitmapToStorage(bitmap: Bitmap): String? {
+        // We use withContext(Dispatchers.IO) because file operations are I/O-bound.
+        return withContext(Dispatchers.IO) {
+            imageAnalyzer.saveBitmapToInternalStorage(bitmap)
+        }
+    }
+
     override suspend fun analyzeImage(image: Bitmap): List<String> {
         return imageAnalyzer.analyze(image)
     }

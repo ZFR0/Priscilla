@@ -59,7 +59,7 @@ fun RemindersScreen(viewModel: RemindersViewModel) {
                 )
             }
         } else {
-            // --- PENDING REMINDERS SECTION ---
+            // PENDING REMINDERS SECTION
             stickyHeader { // This makes the "Pending" text stick to the top as you scroll
                 ListHeader("Pending")
             }
@@ -80,7 +80,7 @@ fun RemindersScreen(viewModel: RemindersViewModel) {
                 }
             }
 
-            // --- EXPIRED REMINDERS SECTION ---
+            // EXPIRED REMINDERS SECTION
             item {
                 // Add some space between the sections
                 Spacer(modifier = Modifier.height(24.dp))

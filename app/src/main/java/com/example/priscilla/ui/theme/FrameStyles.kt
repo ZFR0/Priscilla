@@ -40,7 +40,7 @@ data class FrameStyle(
     // The master scaling factor for the entire frame
     val scale: Float = 1.0f,
 
-    // --- Precise Artistic Offset Controls ---
+    // Precise Artistic Offset Controls
 
     // Corner Offsets
     val cornerTopLeftOffsetX: Dp = 0.dp,

@@ -60,7 +60,7 @@ fun Modifier.drawCustomFrame(
         val elSize = (edgeLeft.intrinsicSize * style.scale).toIntSize()
         val erSize = (edgeRight.intrinsicSize * style.scale).toIntSize()
 
-        // --- Draw Corners with Tuned Offsets ---
+        // Draw Corners with Tuned Offsets
         val ctlOffsetX = with(density) { style.cornerTopLeftOffsetX.toPx() }.roundToInt()
         val ctlOffsetY = with(density) { style.cornerTopLeftOffsetY.toPx() }.roundToInt()
         val ctrOffsetX = with(density) { style.cornerTopRightOffsetX.toPx() }.roundToInt()
@@ -79,7 +79,7 @@ fun Modifier.drawCustomFrame(
         translate(left = (-overlapPx + cblOffsetX).toFloat(), top = (componentSize.height - cblSize.height + overlapPx + cblOffsetY)) { cornerBottomLeft.drawScaled(this, style.scale) }
         translate(left = (componentSize.width - cbrSize.width + overlapPx + cbrOffsetX), top = (componentSize.height - cbrSize.height + overlapPx + cbrOffsetY)) { cornerBottomRight.drawScaled(this, style.scale) }
 
-        // --- Tile edges with gaps and offsets ---
+        // Tile edges with gaps and offsets
         // Top Edge
         if (decoTop != null) {
             val decoSize = (decoTop.intrinsicSize * style.scale).toIntSize()

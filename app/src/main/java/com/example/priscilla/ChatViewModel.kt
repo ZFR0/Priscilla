@@ -26,7 +26,7 @@ class ChatViewModel(
     private val settingsRepository: SettingsRepository
 ) : ViewModel() {
 
-    // --- State exposed to the UI ---
+    // State exposed to the UI
     // The ViewModel now gets its state directly from the Repository's StateFlows.
     val uiChatHistory = chatRepository.uiChatHistory
     val isInitialized = chatRepository.isModelInitialized
@@ -37,13 +37,13 @@ class ChatViewModel(
     private var sendMessageJob: Job? = null
     val isTtsSpeaking = chatRepository.isTtsSpeaking
 
-    // --- State managed ONLY by the ViewModel (UI-specific) ---
+    // -State managed ONLY by the ViewModel (UI-specific)
     val prompt = mutableStateOf("")
     private val promptInputFlow = MutableStateFlow("")
     private val _detectedIntent = MutableStateFlow<ExtractedIntent?>(null)
     val detectedIntent: StateFlow<ExtractedIntent?> = _detectedIntent.asStateFlow()
 
-    // --- Intent parsing is a UI concern (showing hints), so it stays here for now ---
+    // Intent parsing is a UI concern (showing hints), so it stays here for now
     private val intentParser = IntentParser()
 
     init {
@@ -71,7 +71,7 @@ class ChatViewModel(
         }
     }
 
-    // --- Events from the UI ---
+    // Events from the UI
 
     fun onPromptChanged(newText: String) {
         prompt.value = newText
@@ -93,7 +93,7 @@ class ChatViewModel(
         }
     }
 
-    // --- ViewModel Factory ---
+    // ViewModel Factory
     // This is the standard, modern way to create a ViewModel with dependencies.
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {

@@ -9,6 +9,7 @@ import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import kotlinx.coroutines.tasks.await
 import android.graphics.BitmapFactory
 import java.io.File
+import java.io.FileOutputStream
 
 class ImageAnalyzer(
     private val context: Context,
@@ -16,14 +17,12 @@ class ImageAnalyzer(
     // Let's use 0.7f to get more relevant labels.
     private val confidenceThreshold: Float = 0.7f
 ) {
-    // --- UPDATED OPTIONS ---
     // Use options for the Image Labeler instead of the Object Detector.
     // We can set the confidence threshold directly here.
     private val options = ImageLabelerOptions.Builder()
         .setConfidenceThreshold(confidenceThreshold)
         .build()
 
-    // --- UPDATED CLIENT ---
     // Get an ImageLabeler client.
     private val labeler = ImageLabeling.getClient(options)
 
@@ -37,7 +36,6 @@ class ImageAnalyzer(
         // recommended singleton approach for the Labeler. The resources are managed differently.
 
         return try {
-            // --- UPDATED LOGIC ---
             // Process the image with the labeler. This returns a list of ImageLabel.
             val labels = labeler.process(image).await()
 
@@ -81,6 +79,38 @@ class ImageAnalyzer(
             }
         } catch (e: Exception) {
             Log.e("ImageAnalyzer", "Error loading bitmap from path: $path", e)
+            null
+        }
+    }
+
+    /**
+     * Saves a bitmap to the app's internal storage in a dedicated 'images' directory.
+     *
+     * @param bitmap The bitmap to save.
+     * @return The absolute path to the saved image file, or null on failure.
+     */
+    fun saveBitmapToInternalStorage(bitmap: Bitmap): String? {
+        // Get the directory for your app's private pictures.
+        // Using a subdirectory is good practice.
+        val imagesDir = File(context.filesDir, "images")
+        if (!imagesDir.exists()) {
+            imagesDir.mkdirs()
+        }
+
+        // Create a unique file name.
+        val fileName = "IMG_${System.currentTimeMillis()}.jpg"
+        val imageFile = File(imagesDir, fileName)
+
+        return try {
+            FileOutputStream(imageFile).use { fos ->
+                // Compress the bitmap to the file stream.
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos)
+            }
+            Log.i("ImageAnalyzer", "Successfully saved bitmap to: ${imageFile.absolutePath}")
+            // Return the full path to the saved file.
+            imageFile.absolutePath
+        } catch (e: Exception) {
+            Log.e("ImageAnalyzer", "Error saving bitmap to internal storage", e)
             null
         }
     }

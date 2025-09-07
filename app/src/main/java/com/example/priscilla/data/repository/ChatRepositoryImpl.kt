@@ -32,10 +32,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.io.File
-import java.io.FileOutputStream
-import java.util.UUID
 import kotlin.coroutines.cancellation.CancellationException
 
 class ChatRepositoryImpl(
@@ -53,7 +50,7 @@ class ChatRepositoryImpl(
     private val repositoryScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val gson = Gson()
 
-    // --- State Management ---
+    // State Management
     private val _uiChatHistory = MutableStateFlow<List<ChatTurn>>(emptyList())
     override val uiChatHistory: StateFlow<List<ChatTurn>> = _uiChatHistory.asStateFlow()
 
@@ -151,7 +148,7 @@ class ChatRepositoryImpl(
         ttsManager.stopAndClearQueue()
 
         _isLoading.value = true
-        var cloudImageUrl: String? = null
+        var imagePathToSave: String? = null
 
         val displayedUserMessage = if (image != null && userMessage.isBlank()) {
             "Behold this image and speak your mind, Priscilla."
@@ -160,16 +157,16 @@ class ChatRepositoryImpl(
         }
 
         if (image != null) {
-            cloudImageUrl = imageUploader.uploadImage(image)
-            // Optional: Handle upload failure
+            val localImagePath = knowledgeDataSource.saveBitmapToStorage(image)
+            val cloudImageUrl = imageUploader.uploadImage(image)
+            imagePathToSave = cloudImageUrl ?: localImagePath
+
             if (cloudImageUrl == null) {
-                // Here you could decide how to handle an upload failure.
-                // For now, we'll just log it and proceed without an image.
-                Log.e("ChatRepository", "Image upload failed. Proceeding without image URL.")
+                Log.w("ChatRepository", "Image upload failed. Using local path: $localImagePath")
             }
         }
 
-        // --- TTS OPTIMIZATION: Fetch settings once at the start ---
+        // TTS OPTIMIZATION: Fetch settings once at the start
         val voiceSettings = settingsRepository.voiceSettingsFlow.first()
         val isTtsEnabled = voiceSettings.selectedVoiceId != "NONE"
         if (isTtsEnabled) {
@@ -192,7 +189,7 @@ class ChatRepositoryImpl(
         val currentTurn = ChatTurn(
             user = displayedUserMessage,
             assistant = "",
-            imagePath = null,
+            imagePath = imagePathToSave,
             localBitmap = image
         )
         _uiChatHistory.update { it + currentTurn }
@@ -232,7 +229,7 @@ class ChatRepositoryImpl(
                             conversationId = conversationId,
                             user = completedTurn.user,
                             assistant = completedTurn.assistant,
-                            imagePath = cloudImageUrl
+                            imagePath = imagePathToSave
                         )
                         localDataSource.insertTurns(listOf(newTurn))
                         localDataSource.updateConversationTimestamp(

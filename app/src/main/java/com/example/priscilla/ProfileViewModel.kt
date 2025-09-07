@@ -48,7 +48,7 @@ class ProfileViewModel(
             if (imageUrl != null) {
                 profileRepository.updateUserPhotoUrl(userId, imageUrl)
             } else {
-                // Optional: Show an error to the user via a SharedFlow/event
+                // Show an error to the user via a SharedFlow/event
                 Log.e("ProfileViewModel", "Profile picture upload failed.")
             }
             _isUploading.value = false

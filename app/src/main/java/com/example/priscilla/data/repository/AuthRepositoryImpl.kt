@@ -63,7 +63,7 @@ class AuthRepositoryImpl(
             if (currentUser != null && currentUser.isAnonymous) {
                 Log.d("AuthTest", "AuthRepository: Current user is anonymous. Attempting to link...")
                 try {
-                    // --- PRIMARY PATH: Try to link the new credential ---
+                    // PRIMARY PATH: Try to link the new credentia
                     val linkResult = currentUser.linkWithCredential(googleCredential).await()
                     val linkedUser = linkResult.user
                     if (linkedUser != null) {
@@ -71,7 +71,7 @@ class AuthRepositoryImpl(
                         Log.d("AuthTest", "AuthRepository: LINKING SUCCEEDED. User upgraded.")
                     }
                 } catch (e: FirebaseAuthUserCollisionException) {
-                    // --- COLLISION PATH: This is a returning registered user ---
+                    // COLLISION PATH: This is a returning registered user
                     Log.w("AuthTest", "AuthRepository: User collision detected. This is a returning user. Signing in directly.")
 
                     // Sign in with the Google credential. This will switch from the anonymous
@@ -83,7 +83,7 @@ class AuthRepositoryImpl(
                         Log.d("AuthTest", "AuthRepository: DIRECT SIGN-IN SUCCEEDED.")
                     }
 
-                    // (Optional but good practice) Delete the now-orphaned anonymous user.
+                    // Delete the now-orphaned anonymous user.
                     // This prevents clutter in Firebase auth list.
                     Log.d("AuthTest", "AuthRepository: Deleting orphaned anonymous user: ${currentUser.uid}")
                     currentUser.delete().await()

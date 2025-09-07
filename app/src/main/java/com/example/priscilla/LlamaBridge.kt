@@ -10,7 +10,7 @@ class LlamaBridge {
         System.loadLibrary("llama_jni")
     }
 
-    // --- Public Functions ---
+    // Public Functions
     fun initialize(modelPath: String, temp: Float, topK: Int, topP: Float, repeatPenalty: Float): Boolean {
         return loadModel(modelPath, temp, topK, topP, repeatPenalty)
     }
@@ -35,7 +35,7 @@ class LlamaBridge {
 
     external fun finalizeTurn()
 
-    // --- JNI Declarations ---
+    // JNI Declarations
     private external fun loadModel(
         modelPath: String, temp: Float, topK: Int, topP: Float, repeatPenalty: Float
     ): Boolean

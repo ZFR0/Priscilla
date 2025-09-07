@@ -81,7 +81,7 @@ class TtsManager(
     }
 
 
-    // --- Public Functions ---
+    // Public Functions
 
     /**
      * Speaks a chunk of text, adding it to the queue.

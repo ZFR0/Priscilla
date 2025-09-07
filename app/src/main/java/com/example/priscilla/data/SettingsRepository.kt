@@ -41,7 +41,6 @@ sealed class LlamaModel(val modelName: String, val fileName: String, val downloa
     object Qwen4B : LlamaModel(
         modelName = "Qwen 1.5 4B (Higher Quality)",
         fileName = "priscilla-qwen-q4_K_M.gguf",
-        // Replace this with your real Hugging Face URL
         downloadUrl = "https://huggingface.co/ZFR0/priscilla-gguf-models/resolve/main/priscilla-qwen-q4_K_M.gguf"
     )
 }

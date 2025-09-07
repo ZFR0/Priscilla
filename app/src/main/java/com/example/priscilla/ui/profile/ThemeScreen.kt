@@ -284,7 +284,7 @@ private fun TypographySection(
 }
 
 
-// --- Preview Button Composables ---
+// Preview Button Composables
 
 @Composable
 fun ColorPreviewButton(

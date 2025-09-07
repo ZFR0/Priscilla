@@ -81,7 +81,7 @@ class CloudSyncViewModel(
                 else -> {
                     val cloudTimestamp = syncStateRepository.getCloudLastSyncTimestamp(user.uid)
 
-                    // --- CHECK ALL THREE REPOSITORIES ---
+                    // CHECK ALL THREE REPOSITORIES
                     val hasUnsyncedChats = chatRepository.hasUnsyncedData(cloudTimestamp)
                     val hasUnsyncedSettings = settingsRepository.hasUnsyncedData(cloudTimestamp)
                     val hasUnsyncedReminders = reminderRepository.hasUnsyncedData(cloudTimestamp)
@@ -108,7 +108,7 @@ class CloudSyncViewModel(
         }
     }
 
-    // --- User Actions ---
+    // User Actions
 
     // The "Yes, Upload My Data" button for a GUEST UPGRADE calls this.
     fun onUploadData() {
@@ -124,7 +124,7 @@ class CloudSyncViewModel(
             if (chatResult.success && settingsResult.success && remindersResult.success) {
                 syncStateRepository.updateLastSyncTimestamp(user.uid, System.currentTimeMillis())
 
-                // --- BUILD THE DETAILED SUCCESS MESSAGE ---
+                // BUILD THE DETAILED SUCCESS MESSAGE
                 val messages = mutableListOf<String>()
                 if (chatResult.uploaded > 0) messages.add("${chatResult.uploaded} conversations")
                 if (settingsResult.uploaded > 0) messages.add("settings")
@@ -184,7 +184,7 @@ class CloudSyncViewModel(
             if (chatResult.success && settingsResult.success && remindersResult.success) {
                 syncStateRepository.updateLastSyncTimestamp(user.uid, System.currentTimeMillis())
 
-                // --- BUILD THE DETAILED SUCCESS MESSAGE ---
+                // BUILD THE DETAILED SUCCESS MESSAGE
                 val messages = mutableListOf<String>()
                 if (chatResult.uploaded > 0) messages.add("${chatResult.uploaded} conversations")
                 // For settings, "1" isn't descriptive, so we just say "settings"

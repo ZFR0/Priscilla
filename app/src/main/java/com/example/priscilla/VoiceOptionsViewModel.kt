@@ -28,7 +28,7 @@ class VoiceOptionsViewModel(
     private val settingsRepository: SettingsRepository
 ) : ViewModel() {
 
-    // --- State exposed to the UI ---
+    // State exposed to the UI
     val uiState: StateFlow<VoiceOptionsUiState> =
         settingsRepository.voiceSettingsFlow.map { savedSettings ->
             val allVoices = ttsManager.getAvailableVoices()
@@ -49,7 +49,7 @@ class VoiceOptionsViewModel(
             initialValue = VoiceOptionsUiState()
         )
 
-    // --- User Actions ---
+    // User Actions
 
     fun onVoiceSelected(voiceId: String) {
         viewModelScope.launch {
@@ -89,7 +89,7 @@ class VoiceOptionsViewModel(
         )
     }
 
-    // --- ViewModel Factory ---
+    // ViewModel Factory
     companion object {
         val Factory: ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")

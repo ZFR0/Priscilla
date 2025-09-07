@@ -63,7 +63,7 @@ data class ReminderEntity(
     val lastModified: Long = System.currentTimeMillis()
 )
 
-// --- Data Transfer Object (to group a conversation with its turns) ---
+// Data Transfer Object (to group a conversation with its turns)
 
 data class ConversationWithTurns(
     @Embedded val conversation: Conversation,
@@ -74,7 +74,7 @@ data class ConversationWithTurns(
     val turns: List<ChatTurnEntity>
 )
 
-// --- DAO (Data Access Object) - The interface for database operations ---
+// DAO (Data Access Object) - The interface for database operations
 
 @Dao
 interface ChatDao {
@@ -147,7 +147,7 @@ interface ChatDao {
     suspend fun getConversationByIdIncludingDeleted(conversationId: String): Conversation?
 }
 
-// --- The Database Class ---
+// The Database Class
 
 @Database(entities = [Conversation::class, ChatTurnEntity::class, ReminderEntity::class], version = 10)
 @TypeConverters(Converters::class)

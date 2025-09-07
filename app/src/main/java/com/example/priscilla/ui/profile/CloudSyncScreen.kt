@@ -106,7 +106,7 @@ fun CloudSyncScreen(
     }
 }
 
-// --- UI COMPOSABLES FOR EACH STATE ---
+// UI COMPOSABLES FOR EACH STATE
 
 @Composable
 private fun LoadingState() {
@@ -210,7 +210,6 @@ private fun SyncedState(
         Text(status, style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center)
         Spacer(modifier = Modifier.height(32.dp))
 
-        // --- MODIFY THE BUTTON'S ENABLED LOGIC ---
         Button(
             onClick = onSyncNow,
             // The button is now enabled only if there are unsynced changes AND we are not already loading.

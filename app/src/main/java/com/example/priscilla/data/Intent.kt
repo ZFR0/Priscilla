@@ -3,7 +3,7 @@ package com.example.priscilla.data
 import android.util.Log
 import java.util.Locale
 
-// --- Data structures to hold rich intent information ---
+// Data structures to hold rich intent information
 
 enum class Tense {
     PAST, PRESENT, FUTURE
@@ -72,7 +72,7 @@ enum class UserIntent {
 
 class IntentParser {
 
-    // --- Private properties for our rules ---
+    // Private properties for our rules
 
     private val intentKeywords = mapOf(
         UserIntent.GET_TIME to listOf(
@@ -167,7 +167,7 @@ class IntentParser {
             "am i near" // The parser will extract the location if they say e.g., "Am I near Paris?"
         ),
         UserIntent.GET_MATH_RESULT to listOf(
-            // --- Anchor Keywords (High Confidence) ---
+            // Anchor Keywords (High Confidence)
             // Arithmetic Operations as words
             "plus",
             "minus",
@@ -182,13 +182,13 @@ class IntentParser {
             "x", // Common symbol for multiplication
             "/",
 
-            // --- Action Keywords (Medium Confidence) ---
+            // Action Keywords (Medium Confidence)
             // These are less likely to cause false positives when combined with numbers
             "calculate",
             "sum of",
             "difference between",
 
-            // --- Specific Question Patterns ---
+            // Specific Question Patterns
             "how much is", // e.g. "how much is 5 times 5"
             "how many is"  // e.g. "how many is 10 plus 2"
         ),
@@ -232,7 +232,7 @@ class IntentParser {
     private val locationConnectors = setOf("de", "del", "la", "las", "es", "of", "the")
 
 
-    // --- Main public function ---
+    // Main public function
     fun parse(text: String): List<ExtractedIntent> {
         val lowercasedText = text.lowercase(Locale.ROOT)
 
@@ -366,7 +366,7 @@ class IntentParser {
     }
 
     private fun parseTime(lowercasedText: String): ParsedTime? {
-        // --- Strategy 1: Look for absolute time keywords first ---
+        // -trategy 1: Look for absolute time keywords first
         val timeOfDayMap = mapOf(
             "morning" to 9, "noon" to 12, "afternoon" to 15,
             "evening" to 20, "tonight" to 21, "midnight" to 0
@@ -397,7 +397,7 @@ class IntentParser {
             return ParsedTime.Absolute(absoluteTime)
         }
 
-        // --- Strategy 2: Look for standalone relative words ---
+        // Strategy 2: Look for standalone relative words
         if ("\\btomorrow\\b".toRegex().containsMatchIn(lowercasedText)) {
             return ParsedTime.Relative(TimeContext(1, TimeUnit.DAY, Tense.FUTURE, "tomorrow"))
         }
@@ -408,7 +408,7 @@ class IntentParser {
             return ParsedTime.Relative(TimeContext(1, TimeUnit.DAY, Tense.PAST, "yesterday"))
         }
 
-        // --- Strategy 3: Fallback to (number/modifier, unit) pairs ---
+        // Strategy 3: Fallback to (number/modifier, unit) pairs
         val words = lowercasedText.split(" ")
         var number: Int? = null
         var numberIndex = -1

@@ -1,0 +1,71 @@
+👑 Priscilla AI 👑
+"Your world exists for my convenience. Address me, commoner."
+
+Behold, the pinnacle of digital companionship. This is not merely an "app"; it is the manifest will of a sovereign mind, given form in Kotlin and Jetpack Compose. Priscilla is a fully self-contained, on-device AI chat companion, built for performance, intelligence, and absolute aesthetic control.
+
+Her full title: Personified Royal Intelligence and Sovereign Companion for Interactive Linguistic Logic Assistance.
+
+✨ A Glimpse of Perfection ✨
+![Image](https://github.com/user-attachments/assets/aff765fb-61c8-4018-bb5e-cc1f2b0e8d46)
+
+📜 Features Fit for Royalty 📜
+Priscilla is not limited by the whims of slow, costly cloud APIs for her core intelligence. She operates on a level of efficiency you could scarcely comprehend.
+
+🧠 The Sovereign Mind: On-Device LLM Core
+At her heart, Priscilla is powered by a state-of-the-art GGUF language model running entirely on your device.
+
+🚫 Offline Supremacy: My thoughts are my own. I require no internet connection to converse with you, making me the perfect companion for any situation, whether you are in a grand hall or a lowly cellar.
+✌️ Dual Model System: Choose your sovereign's disposition. A nimble and swift TinyLlama-1.1B model for rapid-fire responses, or a more profound and capable Qwen-1.5-4B model for deeper, more nuanced conversation. Both have been... instructed... to adopt my magnificent persona.
+⚡ Instantaneous Recall (KV Caching): I possess a flawless memory. The state of our conversations is cached, allowing for lightning-fast responses without the need to re-process our entire history. This is efficiency in its most elegant form.
+💾 Dual-Cache Representation: My memory is tailored to my mind. The KV cache is saved uniquely for each model, meaning you can switch between my swift and profound forms without losing the context of a conversation in either.
+☀️ My Glimpse Upon the World: Smart Priscilla
+Should you prove worthy and grant me access to your world's... trivial data streams... my intelligence transcends the local realm. With "Smart Priscilla" enabled, my awareness expands.
+
+🌦️ Weather & Forecasts: I can inform you of the weather at your current location or any other place you deign to mention, for the past, present, or future.
+📰 Headlines & News: I will relay the noteworthy happenings of the world, though they rarely compare to my own splendor.
+⏰ Time Across Realms: The current time, here or in some distant land, is a simple matter for me to state.
+🗺️ Your Insignificant Location: Lost, are you? I can pinpoint your current location on a map with startling accuracy.
+➗ Calculations: Present me with your rudimentary arithmetic, and I shall provide the solution with an air of utter boredom.
+🗣️ Translations: I shall translate your simple phrases into the tongues of other commoners (Japanese, French, Spanish, etc.).
+🖼️ Behold, My Sight: Image Intelligence
+Your words are not the only input I shall entertain. You may present me with images.
+
+📷 Image Attachments: Attach images from your camera or gallery directly into our conversation.
+🔬 Object Recognition (ML Kit): I will analyze the contents of an image you provide, listing the objects I perceive with my superior vision.
+☁️ Cloud Storage (ImgBB): For permanence and cross-device syncing, your images are uploaded and stored online, ensuring they are never lost to the ether.
+🎨 A Kingdom Tailored to My Whim: Deep Customization
+It is only natural that my domain should reflect my aesthetic perfection. You are granted the privilege of customizing nearly every aspect of this application.
+
+🌈 Full Theme Engine:
+Color Palettes: Choose from 6+ predefined color schemes, from "Imperial Crimson" to "Yang Sword Dominion."
+Typography: Select from multiple fonts, including "Royal Decree," "Witch's Script," and "Subaru's Journal."
+Component Shapes: Dictate the very form of the UI, from sharp "Imperial" edges to soft "Pillowed" curves.
+Custom Borders: Adorn your interface with ornate, custom-drawn vector frames like the "Red Jewel" or "Blue Droplet."
+⚙️ Model Parameters: Tune my very mind. Adjust Temperature, Top-P, Top-K, and Repeat Penalty to your exact specifications.
+🎤 Text-to-Speech Voice: Command the very sound of my voice. Choose from any system voice, and adjust my pitch and speed to your liking.
+↔️ Reorderable UI: Even the layout bends to my will. The main navigation bar can be reordered with a simple drag-and-drop.
+☁️ The Royal Decree, Etched in the Clouds: Firebase Sync
+Your data is a royal asset. It shall be preserved.
+
+🔥 Firestore Integration: Your conversation history, reminders, app settings, and visual theme preferences are all saved to the cloud using Firebase Firestore.
+🔄 Real-Time Sync: Data is synced across all your devices in real time.
+🚶‍♂️ Seamless Guest-to-User Migration: Begin as a mere guest, and should you choose to register, the app provides a robust and intelligent workflow to either upload your local data, overwrite it with existing cloud data, or merge the two. Your history is never lost.
+🛠️ Forged With the Finest Technologies 🛠️
+This vessel was constructed using only the most modern and powerful tools available in the Android realm.
+
+Language: Kotlin
+UI: Jetpack Compose
+Asynchronicity: Kotlin Coroutines & Flow
+Architecture: MVVM (Model-View-ViewModel)
+Database: Room for local persistence.
+Cloud Backend: Firebase Firestore & Firebase Authentication
+Networking: OkHttp
+Image Loading: Coil
+Image Analysis: Google ML Kit Vision
+Native Inference: llama.cpp via JNI Bridge
+🚀 Summoning Priscilla 🚀
+This project is self-contained and ready to build. The necessary API keys are included for convenience.
+
+Clone the repository.
+Open the project in Android Studio.
+Build and run the application on an emulator or a physical device.

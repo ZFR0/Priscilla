@@ -190,7 +190,7 @@ object InformationProvider {
         }
     }
 
-    // --- Private Helper Functions ---
+    // Private Helper Functions
 
     private fun getCoordinatesForLocation(location: String): GeoInfo? {
         try {

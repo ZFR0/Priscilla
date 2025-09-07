@@ -81,6 +81,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        // Release the Llama model from memory
+        (application as PriscillaApplication).appContainer.chatRepository.let {
+            if (it is com.example.priscilla.data.repository.ChatRepositoryImpl) {
+                it.release()
+            }
+        }
         // This ensures that when the main activity is destroyed (e.g., app is fully closed),
         // we release the Text-to-Speech engine's resources to prevent memory leaks.
         // We get the singleton instance of the TtsManager from our AppContainer.

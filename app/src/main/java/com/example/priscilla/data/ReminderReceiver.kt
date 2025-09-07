@@ -26,7 +26,7 @@ class ReminderReceiver : BroadcastReceiver() {
         if (reminderIdString.isNullOrBlank()) return
 
         val notificationId = reminderIdString.hashCode()
-        // --- Add a permission check for Android 13+ ---
+        // Add a permission check for Android 13+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 Log.w("ReminderReceiver", "POST_NOTIFICATIONS permission not granted. Cannot show reminder.")

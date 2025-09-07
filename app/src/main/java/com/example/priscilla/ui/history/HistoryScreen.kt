@@ -269,7 +269,7 @@ fun ChatDetailScreen(
                     // Once the data is loaded, show the LazyColumn with the chat turns
                     val chatTurns = state.data.turns
                     if (chatTurns.isEmpty()) {
-                        // Optional: Handle case where a conversation has no messages
+                        // Handle case where a conversation has no messages
                         Text(
                             "This conversation is empty.",
                             modifier = Modifier.align(Alignment.Center)
@@ -313,7 +313,7 @@ fun ChatDetailScreen(
                     }
                 }
                 is UiState.Error -> {
-                    // Optional: Handle the error case
+                    // Handle the error case
                     Text(
                         "Failed to load conversation: ${state.message}",
                         modifier = Modifier.align(Alignment.Center)

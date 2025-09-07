@@ -1,7 +1,6 @@
 package com.example.priscilla
 
 import android.app.Application
-import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -10,13 +9,12 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.priscilla.data.ChatDatabase
 import com.example.priscilla.data.Conversation
 import com.example.priscilla.data.ConversationWithTurns
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import androidx.compose.ui.text.AnnotatedString
 import com.example.priscilla.data.ChatTurn
 import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.debounce
 
 data class ConversationDetail(
@@ -84,6 +82,8 @@ class HistoryViewModel(
             initialValue = emptyList()
         )
 
+    private var conversationDetailJob: Job? = null
+
     private val _conversationDetailsState = MutableStateFlow<UiState<ConversationDetail>>(UiState.Loading)
     val conversationDetailsState: StateFlow<UiState<ConversationDetail>> = _conversationDetailsState.asStateFlow()
 
@@ -92,7 +92,9 @@ class HistoryViewModel(
     }
 
     fun loadConversationDetails(conversationId: String) {
-        viewModelScope.launch {
+        conversationDetailJob?.cancel()
+
+        conversationDetailJob = viewModelScope.launch {
             chatDao.getConversationWithTurns(conversationId)
                 .map<ConversationWithTurns?, UiState<ConversationDetail>> { conversationWithTurns ->
                     // LOG 1: Mapping started
